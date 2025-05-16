@@ -40,8 +40,8 @@ jobs:
             echo "Build directory './dist' does not exist."
             exit 1
           fi
-      # - name: Debug Build Output
-      #   run: ls -la ./dist
+      - name: Debug Build Output
+        run: ls -la ./dist
       # - name: Setup Pages
       #   uses: actions/configure-pages@v3
       # - name: Upload artifact
