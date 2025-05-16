@@ -42,8 +42,8 @@ jobs:
           fi
       - name: Debug Build Output
         run: ls -la ./dist
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       # - name: Upload artifact
       #   uses: actions/upload-artifact@v3
       #   with:
