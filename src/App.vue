@@ -5,16 +5,22 @@ import Contact from './components/Contact.vue'
 import Music from './components/Music.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
+import photo1 from './assets/photos/469528033_470813206033009_2733136312715004689_n.jpg'
+import photo2 from './assets/photos/470183671_474569605657369_189162060557416753_n.jpg'
+import photo3 from './assets/photos/473814008_497709586676704_4221957726168515336_n.jpg'
+import photo4 from './assets/photos/477664638_518735514574111_7413671037468325620_n.jpg'
+import photo5 from './assets/photos/478115000_518735921240737_6203683904853730722_n.jpg'
+import photo6 from './assets/photos/480164625_521064154341247_8542784989500175394_n.jpg'
+import photo7 from './assets/photos/480249237_518747181239611_579585532979415552_n.jpg'
+import photo8 from './assets/photos/480457374_521064114341251_397681042044126080_n.jpg'
+import photo9 from './assets/photos/IMG_2880.jpg'
+
 const isMenuOpen = ref(false)
 const currentImageIndex = ref(0)
 const images = [
-  './src/assets/photos/IMG_2880.jpg',
-  './src/assets/photos/473814008_497709586676704_4221957726168515336_n.jpg',
-  './src/assets/photos/478115000_518735921240737_6203683904853730722_n.jpg',
-  './src/assets/photos/480164625_521064154341247_8542784989500175394_n.jpg',
-  './src/assets/photos/480164625_521064154341247_8542784989500175394_n.jpg',
-  './src/assets/photos/470183671_474569605657369_189162060557416753_n.jpg',
-
+  photo1,
+  photo2,
+  photo3
 ]
 
 let rotationInterval: number | undefined
