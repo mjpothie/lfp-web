@@ -1,15 +1,16 @@
 <script setup lang="ts">
-const handleSubmit = (event: Event) => {
-  event.preventDefault()
-  // Add form submission logic here
-}
 </script>
 
 <template>
   <section id="contact" class="py-24 bg-black">
     <h2 class="text-5xl font-rock text-white mb-12 text-center tracking-wide px-8">Contact Us</h2>
+    <div class="max-w-2xl mx-auto px-8 mb-12">
+      <p class="text-gray-300 text-center">
+        Send us a message on <a href="https://www.facebook.com/lateforpickup" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">Facebook</a> or use the form below to get in touch!
+      </p>
+    </div>
     <div class="px-8">
-      <form @submit="handleSubmit" class="space-y-6 font-sans max-w-2xl mx-auto">
+      <form action="https://formspree.io/f/mgekzggg" method="POST" class="space-y-6 font-sans max-w-2xl mx-auto">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
           <input type="text" id="name" name="name" required

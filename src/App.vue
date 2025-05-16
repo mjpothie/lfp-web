@@ -2,9 +2,36 @@
 import About from './components/About.vue'
 import Photos from './components/Photos.vue'
 import Contact from './components/Contact.vue'
-import { ref } from 'vue'
+import Music from './components/Music.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const isMenuOpen = ref(false)
+const currentImageIndex = ref(0)
+const images = [
+  './src/assets/photos/IMG_2880.jpg',
+  './src/assets/photos/473814008_497709586676704_4221957726168515336_n.jpg',
+  './src/assets/photos/478115000_518735921240737_6203683904853730722_n.jpg',
+  './src/assets/photos/480164625_521064154341247_8542784989500175394_n.jpg',
+  './src/assets/photos/480164625_521064154341247_8542784989500175394_n.jpg',
+  './src/assets/photos/470183671_474569605657369_189162060557416753_n.jpg',
+
+]
+
+let rotationInterval: number | undefined
+
+const rotateImage = () => {
+  currentImageIndex.value = (currentImageIndex.value + 1) % images.length
+}
+
+onMounted(() => {
+  rotationInterval = window.setInterval(rotateImage, 5000) // Rotate every 5 seconds
+})
+
+onBeforeUnmount(() => {
+  if (rotationInterval) {
+    clearInterval(rotationInterval)
+  }
+})
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -126,51 +153,40 @@ const closeMenu = () => {
     </transition>
 
     <!-- Hero Section -->
-    <div class="relative h-screen w-full overflow-hidden bg-gradient-to-br from-stone-900 via-gray-900 to-black">
-      <!-- Noise texture overlay -->
-      <div class="absolute inset-0 opacity-50 mix-blend-overlay">
-        <div class="absolute inset-0 animate-subtle-shift" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E')"></div>
-      </div>
+    <div class="relative h-[75vh] w-full overflow-hidden bg-gradient-to-br from-stone-900 via-gray-900 to-black">
+      <!-- Background Images -->
+      <transition-group
+        name="fade"
+        tag="div"
+        class="absolute inset-0"
+      >
+        <img
+          v-for="(image, index) in images"
+          :key="image"
+          :src="image"
+          v-show="currentImageIndex === index"
+          class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000"
+          :alt="'LFP Band Performance ' + (index + 1)"
+        />
+      </transition-group>
 
-      <!-- Scratched/worn texture overlay -->
-      <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cline x1=\'0\' y1=\'50\' x2=\'100\' y2=\'50\' stroke=\'%23ffffff\' stroke-width=\'0.5\' stroke-dasharray=\'1,4\'/%3E%3Cline x1=\'50\' y1=\'0\' x2=\'50\' y2=\'100\' stroke=\'%23ffffff\' stroke-width=\'0.5\' stroke-dasharray=\'1,4\'/%3E%3C/svg%3E')"></div>
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <!-- Main content -->
-      <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-        <!-- Band name with distressed effect -->
-        <h1 class="font-rock text-7xl md:text-9xl text-center mb-4 relative transform hover:scale-105 transition-transform duration-300" 
-            style="text-shadow: 
-              2px 2px 0px #660000,
-              -2px -2px 0px #000000,
-              4px 4px 8px rgba(0,0,0,0.8);
-              letter-spacing: -0.05em;
-              filter: contrast(150%) brightness(110%);">
-          Late for Pickup
-        </h1>
-        
-        <!-- Tagline with scratched effect -->
-        <p class="font-rock text-2xl md:text-4xl text-center mb-12 relative tracking-widest opacity-90 transform -rotate-1" 
-           style="text-shadow: 
-             1px 1px 2px #000,
-             -1px -1px 2px #000;
-             letter-spacing: 0.15em;">
-          <span class="inline-block transform hover:translate-x-1 transition-transform duration-200">90's</span>
-          <span class="inline-block transform hover:-translate-y-1 transition-transform duration-200 mx-2">ROCK</span>
-          <span class="inline-block transform hover:translate-x-1 transition-transform duration-200">UNLEASHED</span>
-        </p>
-
-        <!-- YouTube Video Container with grungy border -->
-        <div class="w-full max-w-4xl aspect-video px-4 relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-red-900/20 to-stone-900/20 -m-1"></div>
-          <iframe
-            class="w-full h-full relative shadow-xl"
-            style="box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 0 15px rgba(0,0,0,0.5);"
-            src="https://www.youtube.com/embed/McOiAf8mJwA?si=s9UWoIzS89t0bx50"
-            title="YouTube video"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+      <div class="absolute inset-0 flex items-center justify-center text-white">
+        <!-- Logo with enhanced glow effect -->
+        <div class="w-full max-w-4xl px-8">
+          <img 
+            src="./assets/lfp-fulllogo-transparent.png" 
+            alt="Late For Pickup" 
+            class="w-full transition-transform duration-300 hover:scale-105"
+            style="filter: 
+              drop-shadow(0 0 10px rgba(255,255,255,0.4))
+              drop-shadow(0 0 20px rgba(255,255,255,0.2))
+              drop-shadow(0 0 30px rgba(0,0,0,0.8))
+              drop-shadow(2px 2px 3px rgba(0,0,0,0.9));"
+          />
         </div>
       </div>
     </div>
@@ -178,11 +194,22 @@ const closeMenu = () => {
     <!-- Content Sections -->
     <About class="bg-black text-white border-b border-gray-800" />
     <Photos class="bg-black border-b border-gray-800" />
+    <Music class="bg-black text-white border-b border-gray-800" />
     <Contact class="bg-black text-white" />
   </div>
 </template>
 
 <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 @keyframes subtle-shift {
   0% {
     transform: translate(0, 0) scale(1.5);
