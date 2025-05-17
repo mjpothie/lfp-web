@@ -71,4 +71,22 @@ button:focus-visible {
   text-align: center;
 }
 
+/* Hero image styles */
+.hero-section {
+  height: auto;
+  margin: 0 auto;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.hero-image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
 /* Dark theme is now the default and only theme */

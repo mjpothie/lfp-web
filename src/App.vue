@@ -5,16 +5,18 @@ import Contact from './components/Contact.vue'
 import Music from './components/Music.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-import photo1 from './assets/photos/469528033_470813206033009_2733136312715004689_n.jpg'
-import photo2 from './assets/photos/470183671_474569605657369_189162060557416753_n.jpg'
-import photo3 from './assets/photos/473814008_497709586676704_4221957726168515336_n.jpg'
+import photo1 from './assets/photos/470183671_474569605657369_189162060557416753_n.jpg'
+import photo2 from './assets/photos/IMG_2880.jpg'
+import photo3 from './assets/photos/469528033_470813206033009_2733136312715004689_n.jpg'
+import photo4 from './assets/photos/478115000_518735921240737_6203683904853730722_n.jpg'
 
 const isMenuOpen = ref(false)
 const currentImageIndex = ref(0)
 const images = [
   photo1,
   photo2,
-  photo3
+  photo3,
+  photo4
 ]
 
 let rotationInterval: number | undefined
@@ -24,7 +26,7 @@ const rotateImage = () => {
 }
 
 onMounted(() => {
-  rotationInterval = window.setInterval(rotateImage, 5000) // Rotate every 5 seconds
+  rotationInterval = window.setInterval(rotateImage, 3000) // Rotate every 3 seconds
 })
 
 onBeforeUnmount(() => {
@@ -153,40 +155,50 @@ const closeMenu = () => {
     </transition>
 
     <!-- Hero Section -->
-    <div class="relative h-[75vh] w-full overflow-hidden bg-gradient-to-br from-stone-900 via-gray-900 to-black">
+    <div class="relative max-w-7xl mx-auto overflow-hidden bg-gradient-to-br from-stone-900 via-gray-900 to-black">
       <!-- Background Images -->
-      <transition-group
-        name="fade"
-        tag="div"
-        class="absolute inset-0"
-      >
-        <img
-          v-for="(image, index) in images"
-          :key="image"
-          :src="image"
-          v-show="currentImageIndex === index"
-          class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000"
-          :alt="'LFP Band Performance ' + (index + 1)"
-        />
-      </transition-group>
+      <div class="relative" style="padding-bottom: 66.67%"> <!-- 3:2 aspect ratio for photos -->
+        <div class="absolute inset-0">
+          <template v-for="(image, index) in images" :key="image">
+            <img
+              :src="image"
+              :style="{
+                opacity: currentImageIndex === index ? 1 : 0,
+                transition: 'opacity 1s ease-in-out',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }"
+              :alt="'LFP Band Performance ' + (index + 1)"
+            />
+          </template>
+        </div>
 
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-10"></div>
 
-      <!-- Main content -->
-      <div class="absolute inset-0 flex items-center justify-center text-white">
-        <!-- Logo with enhanced glow effect -->
-        <div class="w-full max-w-4xl px-8">
-          <img 
-            src="./assets/lfp-fulllogo-transparent.png" 
-            alt="Late For Pickup" 
-            class="w-full transition-transform duration-300 hover:scale-105"
-            style="filter: 
-              drop-shadow(0 0 10px rgba(255,255,255,0.4))
-              drop-shadow(0 0 20px rgba(255,255,255,0.2))
-              drop-shadow(0 0 30px rgba(0,0,0,0.8))
-              drop-shadow(2px 2px 3px rgba(0,0,0,0.9));"
-          />
+        <!-- Main content -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-full flex items-center justify-center py-12 md:py-16 lg:py-20">
+            <div class="w-full max-w-[80%] md:max-w-2xl lg:max-w-3xl px-4 md:px-8">
+              <img 
+                src="./assets/lfp-fulllogo-transparent.png" 
+                alt="Late For Pickup" 
+                class="w-full transition-transform duration-300 hover:scale-105"
+                :style="{
+                  opacity: currentImageIndex === 0 ? 1 : 0,
+                  transition: 'opacity 1s ease-in-out',
+                  filter: `drop-shadow(0 0 10px rgba(255,255,255,0.4))
+                          drop-shadow(0 0 20px rgba(255,255,255,0.2))
+                          drop-shadow(0 0 30px rgba(0,0,0,0.8))
+                          drop-shadow(2px 2px 3px rgba(0,0,0,0.9))`
+                }"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -210,20 +222,15 @@ const closeMenu = () => {
   opacity: 0;
 }
 
-@keyframes subtle-shift {
-  0% {
-    transform: translate(0, 0) scale(1.5);
-  }
-  50% {
-    transform: translate(-1%, 1%) scale(1.5);
-  }
-  100% {
-    transform: translate(0, 0) scale(1.5);
-  }
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 
-.animate-subtle-shift {
-  animation: subtle-shift 8s ease-in-out infinite;
+.fade-move {
+  transition: transform 1s ease;
 }
+
+
 </style>
 
