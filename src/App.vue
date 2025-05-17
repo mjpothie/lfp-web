@@ -22,11 +22,17 @@ const images = [
 let rotationInterval: number | undefined
 
 const rotateImage = () => {
+  if (rotationInterval) {
+    clearInterval(rotationInterval)
+  }
   currentImageIndex.value = (currentImageIndex.value + 1) % images.length
+  // Set interval based on which image is showing
+  const nextDuration = currentImageIndex.value === 0 ? 5000 : 3000
+  rotationInterval = window.setInterval(rotateImage, nextDuration)
 }
 
 onMounted(() => {
-  rotationInterval = window.setInterval(rotateImage, 3000) // Rotate every 3 seconds
+  rotationInterval = window.setInterval(rotateImage, 5000) // Start with 5 seconds for first image
 })
 
 onBeforeUnmount(() => {
@@ -61,6 +67,7 @@ const closeMenu = () => {
         <div class="hidden md:flex items-center space-x-12 font-rock">
           <a href="#about" class="py-4 px-2 text-gray-300 hover:text-white transition duration-300">About</a>
           <a href="#photos" class="py-4 px-2 text-gray-300 hover:text-white transition duration-300">Photos</a>
+          <a href="#music" class="py-4 px-2 text-gray-300 hover:text-white transition duration-300">Music</a>
           <a href="#contact" class="py-4 px-2 text-gray-300 hover:text-white transition duration-300">Contact</a>
           <a href="https://www.facebook.com/lateforpickup" 
              target="_blank" 
@@ -133,6 +140,13 @@ const closeMenu = () => {
             Photos
           </a>
           <a 
+            href="#music" 
+            @click="closeMenu"
+            class="py-3 px-6 text-gray-300 hover:text-white transition duration-300 hover:scale-110"
+          >
+            Music
+          </a>
+          <a 
             href="#contact" 
             @click="closeMenu"
             class="py-3 px-6 text-gray-300 hover:text-white transition duration-300 hover:scale-110"
@@ -187,7 +201,7 @@ const closeMenu = () => {
               <img 
                 src="./assets/lfp-fulllogo-transparent.png" 
                 alt="Late For Pickup" 
-                class="w-full transition-transform duration-300 hover:scale-105"
+                class="w-full"
                 :style="{
                   opacity: currentImageIndex === 0 ? 1 : 0,
                   transition: 'opacity 1s ease-in-out',
