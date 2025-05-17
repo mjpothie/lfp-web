@@ -27,7 +27,7 @@ const rotateImage = () => {
   }
   currentImageIndex.value = (currentImageIndex.value + 1) % images.length
   // Set interval based on which image is showing
-  const nextDuration = currentImageIndex.value === 0 ? 5000 : 3000
+  const nextDuration = currentImageIndex.value === 0 ? 3000 : 3000
   rotationInterval = window.setInterval(rotateImage, nextDuration)
 }
 
