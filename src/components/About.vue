@@ -18,8 +18,8 @@
            style="box-shadow: 0 0 20px rgba(0,0,0,0.5);">
         <iframe
           class="w-full h-full absolute inset-0"
-          src="https://www.youtube.com/embed/McOiAf8mJwA"
-          title="LFP Band Performance"
+          src="https://www.youtube.com/embed/mLuH5jV-scA"   
+          title="Late for Pickup - Promo Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
