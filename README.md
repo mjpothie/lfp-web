@@ -1,11 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# Late For Pickup Static Website
 
 This is the website for Late For Pickup.
 
-It
+It uses the following technologies:
 
-Vue 3 + TypeScript + Vite
+- **Vue** - a progressive JavaScript framework for building user interfaces that features component-based architecture
+- **Tailwind CSS** - a utility-first CSS framework that provides low-level utility classes to build designs directly in your markup without writing custom CSS
+- **Vite** - a modern frontend build tool that leverages native ES modules for extremely fast hot module replacement (HMR) during development and optimized bundling for production
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### Reference
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- [ViteJS starter templates](https://vuejs.org/guide/quick-start.html#local)
+- [Vite & Vue Starter](https://vuejs.org/guide/quick-start.html#local)
+
