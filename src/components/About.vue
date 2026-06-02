@@ -6,9 +6,7 @@
     <h2 class="text-5xl font-rock text-white mb-12 text-center tracking-wide px-8">About LFP</h2>
     <div class="prose prose-lg prose-invert px-8 mb-16">
       <p class="text-gray-300 text-center text-xl mx-auto font-sans max-w-3xl">
-        Late for Pickup delivers exactly what their name promises — three guys who might be rushing from school drop-offs, but never miss a beat when it comes to rocking out!
-        <br><br>
-        Born in Reading, Massachusetts, LFP shows up with the perfect blend of 90's and 2000's hits that'll make you quickly forget about any real-world responsibilities. 
+        Late For Pickup is a local alternative rock band serving a mix of high-energy and acoustic favorites from the 90s and 2000s - with guaranteed good vibes for all!
       </p>
     </div>
 
